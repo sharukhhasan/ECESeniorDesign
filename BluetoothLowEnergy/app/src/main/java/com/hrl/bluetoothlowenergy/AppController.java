@@ -3,7 +3,9 @@ package com.hrl.bluetoothlowenergy;
 import android.app.Application;
 
 /**
- * Created by sharukhhasan on 2/8/17.
+ * Created by Sharukh Hasan on 2/8/17.
+ *
+ * Application Controller
  */
 public class AppController extends Application {
 

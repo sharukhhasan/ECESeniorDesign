@@ -9,7 +9,9 @@ import com.hrl.bluetoothlowenergy.R;
 import io.fabric.sdk.android.Fabric;
 
 /**
- * Created by sharukhhasan on 2/8/17.
+ * Created by Sharukh Hasan on 2/8/17.
+ *
+ * Splash activity
  */
 public class SplashActivity extends AppCompatActivity {
 
