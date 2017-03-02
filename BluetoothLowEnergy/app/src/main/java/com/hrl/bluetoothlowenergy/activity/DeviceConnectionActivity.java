@@ -1,4 +1,4 @@
-package com.hrl.bluetoothlowenergy.activities;
+package com.hrl.bluetoothlowenergy.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,7 +6,6 @@ import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
-import android.bluetooth.le.BluetoothLeScanner;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
