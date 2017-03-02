@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Profile:"
-        android:id="@+id/coaptDeviceAddress"
+        android:id="@+id/deviceAddressTextView"
         android:textSize="24sp"
         android:textColor="@color/color_gray" />
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/coaptDeviceProfileName"
+        android:id="@+id/deviceProfileTextView"
         android:textColor="@color/color_gray" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="LAST CONNECTED"
-        android:id="@+id/coaptDeviceName"
+        android:id="@+id/deviceConnectionTextView"
         android:textColor="@color/color_gray" />
 
 </LinearLayout>
