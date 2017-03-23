@@ -6,6 +6,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:paddingTop="5dp"
         android:background="@android:color/darker_gray"/>
 
     <TextView
@@ -13,35 +14,72 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        android:text="@string/device_name_title"/>
+        android:text="@string/device_name_title"
+        android:textColor="@color/color_blue" />
 
     <TextView
         android:id="@+id/deviceName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/deviceAddressTextView"/>
+        android:layout_alignBaseline="@+id/deviceNameTextView"
+        android:layout_toEndOf="@+id/deviceNameTextView"
+        android:padding="4dp"
+        android:textColor="@android:color/black" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_below="@id/deviceName"
         android:background="@android:color/darker_gray"/>
 
     <TextView
         android:id="@+id/deviceAddressTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/deviceName"
-        android:text="@string/device_mac_address_title" />
+        android:layout_below="@+id/deviceNameTextView"
+        android:padding="4dp"
+        android:text="@string/device_mac_address_title"
+        android:textColor="@color/color_blue"/>
 
     <TextView
         android:id="@+id/deviceAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/deviceAddressTextView"/>
+        android:padding="4dp"
+        android:layout_alignBaseline="@+id/deviceAddressTextView"
+        android:layout_toEndOf="@+id/deviceAddressTextView"
+        android:textColor="@android:color/black"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_below="@id/deviceAddress"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/deviceRssiTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/deviceAddressTextView"
+        android:padding="4dp"
+        android:text="@string/rssi_value_title"
+        android:textColor="@color/color_blue"/>
+
+    <TextView
+        android:id="@+id/deviceRssi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_alignBaseline="@+id/deviceRssiTextView"
+        android:layout_toEndOf="@+id/deviceRssiTextView"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/deviceRssi"
+        android:paddingBottom="5dp"
         android:background="@android:color/darker_gray"/>
 
 </RelativeLayout>
