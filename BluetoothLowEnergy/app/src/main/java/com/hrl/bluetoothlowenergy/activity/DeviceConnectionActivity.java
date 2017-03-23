@@ -2,15 +2,19 @@ package com.hrl.bluetoothlowenergy.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +26,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import com.hrl.bluetoothlowenergy.R;
-
+import com.hrl.bluetoothlowenergy.utils.OrientationUtils;
 /**
  * Created by Sharukh Hasan on 8/14/16.
- *
- * Device connection activity
+ * Copyright © 2016 Coapt Engineering. All rights reserved.
  */
 public class DeviceConnectionActivity extends ListActivity {
     private static final String TAG = "DeviceConnectionActivity";
 
+    private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final long SCAN_PERIOD = 10000;
 
@@ -45,10 +49,15 @@ public class DeviceConnectionActivity extends ListActivity {
     private final String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN};
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestPermissions(permissions, 1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, 1);
+        }
+
         mHandler = new Handler();
+
+        OrientationUtils.lockOrientationPortrait(this);
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
@@ -56,6 +65,8 @@ public class DeviceConnectionActivity extends ListActivity {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
             finish();
         }
+
+
 
         // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
         // BluetoothAdapter through BluetoothManager.
@@ -66,6 +77,28 @@ public class DeviceConnectionActivity extends ListActivity {
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
             finish();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_COARSE_LOCATION: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("Connection", "coarse location permission granted");
+                } else {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Functionality limited");
+                    builder.setMessage("Will not be able to detect devices.");
+                    builder.setPositiveButton(android.R.string.ok, null);
+                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                        }
+                    });
+                    builder.show();
+                }
+            }
         }
     }
 
@@ -108,7 +141,10 @@ public class DeviceConnectionActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
-        if (device == null) return;
+        if (device == null) {
+            return;
+        }
+
         final Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(DeviceConnectionActivity.EXTRAS_DEVICE_NAME, device.getName());
         intent.putExtra(DeviceConnectionActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
@@ -118,7 +154,7 @@ public class DeviceConnectionActivity extends ListActivity {
             mScanning = false;
         }
         startActivity(intent);
-
+        finish();
     }
 
     private void scanLeDevice(final boolean enable) {
@@ -187,8 +223,8 @@ public class DeviceConnectionActivity extends ListActivity {
             if (view == null) {
                 view = mInflator.inflate(R.layout.device_view, null);
                 viewHolder = new ViewHolder();
-                viewHolder.deviceAddress = (TextView) view.findViewById(R.id.coaptDeviceAddress);
-                viewHolder.deviceName = (TextView) view.findViewById(R.id.coaptDeviceName);
+                viewHolder.deviceAddress = (TextView) view.findViewById(R.id.profileName);
+                viewHolder.deviceName = (TextView) view.findViewById(R.id.lastConnected);
                 view.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) view.getTag();

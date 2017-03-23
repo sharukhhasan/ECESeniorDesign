@@ -29,4 +29,11 @@
     <string name="connect_to_a_device">Connect to a device!</string>
     <string name="connect">Connect</string>
     <string name="device_menu">Device Menu</string>
+
+    <string name="last_connected">Last Connected:</string>
+    <string name="device_name">Device Name</string>
+    <string name="profile">Profile:</string>
+    <string name="one_hour_ago">1 Hour Ago</string>
+    <string name="device_name_title">Device Name:</string>
+    <string name="device_mac_address_title">Device Mac Address:</string>
 </resources>

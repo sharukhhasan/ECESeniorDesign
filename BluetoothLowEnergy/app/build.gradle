@@ -1,10 +1,9 @@
 buildscript {
     repositories {
-        mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
@@ -12,9 +11,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 repositories {
-    mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
 }
+
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 25
@@ -45,21 +45,16 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.android.support:support-v4:25.2.0'
-    compile 'com.android.support:gridlayout-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:support-v4:25.3.0'
+    compile 'com.android.support:gridlayout-v7:25.3.0'
     testCompile 'junit:junit:4.12'
 
-    // Crashlytics lib
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
-        transitive = true;
-    }
-
-    // Butterknife lib for view injection
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    // ButterKnife dependency injection lib
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     // Memory leak detection
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

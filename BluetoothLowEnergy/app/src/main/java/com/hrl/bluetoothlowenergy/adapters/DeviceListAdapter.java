@@ -50,8 +50,8 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
         TextView macText;
 
         private ViewHolder(View view){
-            titleText = (TextView) view.findViewById(R.id.coaptDeviceName);
-            macText = (TextView) view.findViewById(R.id.coaptDeviceAddress);
+            titleText = (TextView) view.findViewById(R.id.profileName);
+            macText = (TextView) view.findViewById(R.id.lastConnected);
         }
     }
 
