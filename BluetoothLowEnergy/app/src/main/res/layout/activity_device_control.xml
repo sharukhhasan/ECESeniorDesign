@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hrl.bluetoothlowenergy.activity.DeviceControlActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Device Control"
+            android:textSize="@dimen/title_size"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_device_control" />
+
+</android.support.constraint.ConstraintLayout>
