@@ -3,6 +3,10 @@ package com.sharukhhasan.bluetoothlelib.util;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Created by Sharukh Hasan on 3/23/17.
+ *
+ */
 public class LimitedLinkHashMap<K, V> extends LinkedHashMap<K, V> {
     private static final long serialVersionUID = -5375660288461724925L;
 

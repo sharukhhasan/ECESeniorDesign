@@ -12,7 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Created by Sharukh Hasan on 3/23/17.
+ *
+ */
 public final class AdRecordUtils {
 
     private AdRecordUtils(){
