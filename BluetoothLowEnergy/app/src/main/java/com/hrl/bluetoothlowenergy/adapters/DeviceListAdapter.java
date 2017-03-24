@@ -23,6 +23,7 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
     private final List<BluetoothDevice> deviceItems;
     private BluetoothAdapter bTAdapter;
 
+
     public DeviceListAdapter(Context context, List<BluetoothDevice> deviceItems, BluetoothAdapter bTAdapter) {
         super(context, android.R.layout.simple_list_item_1, deviceItems);
         this.bTAdapter = bTAdapter;
@@ -48,10 +49,12 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
     private class ViewHolder{
         TextView titleText;
         TextView macText;
+        TextView rssiText;
 
         private ViewHolder(View view){
-            titleText = (TextView) view.findViewById(R.id.profileName);
-            macText = (TextView) view.findViewById(R.id.lastConnected);
+            titleText = (TextView) view.findViewById(R.id.deviceName);
+            macText = (TextView) view.findViewById(R.id.deviceAddress);
+            rssiText = (TextView) view.findViewById(R.id.deviceRssi);
         }
     }
 

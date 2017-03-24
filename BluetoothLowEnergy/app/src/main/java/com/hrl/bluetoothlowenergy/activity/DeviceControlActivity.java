@@ -25,6 +25,7 @@ import com.hrl.bluetoothlowenergy.bluetooth.BluetoothLeService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 
 public class DeviceControlActivity extends Activity {
@@ -240,8 +241,8 @@ public class DeviceControlActivity extends Activity {
         for (BluetoothGattService gattService : gattServices) {
             HashMap<String, String> currentServiceData = new HashMap<String, String>();
             uuid = gattService.getUuid().toString();
-            currentServiceData.put(
-                    LIST_NAME, SampleGattAttributes.lookup(uuid, unknownServiceString));
+            UUID mUUID = gattService.getUuid();
+            currentServiceData.put(LIST_NAME, gattService.getCharacteristic(mUUID).toString());
             currentServiceData.put(LIST_UUID, uuid);
             gattServiceData.add(currentServiceData);
 
@@ -257,8 +258,8 @@ public class DeviceControlActivity extends Activity {
                 charas.add(gattCharacteristic);
                 HashMap<String, String> currentCharaData = new HashMap<String, String>();
                 uuid = gattCharacteristic.getUuid().toString();
-                currentCharaData.put(
-                        LIST_NAME, SampleGattAttributes.lookup(uuid, unknownCharaString));
+                UUID mmUUID = gattCharacteristic.getUuid();
+                currentCharaData.put(LIST_NAME, gattService.getCharacteristic(mmUUID).toString());
                 currentCharaData.put(LIST_UUID, uuid);
                 gattCharacteristicGroupData.add(currentCharaData);
             }

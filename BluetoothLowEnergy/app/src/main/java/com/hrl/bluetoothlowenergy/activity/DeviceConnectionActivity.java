@@ -43,6 +43,7 @@ public class DeviceConnectionActivity extends ListActivity {
 
     private LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothAdapter mBluetoothAdapter;
+    final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
     private boolean mScanning;
     private Handler mHandler;
 
@@ -74,9 +75,9 @@ public class DeviceConnectionActivity extends ListActivity {
         mBluetoothAdapter = bluetoothManager.getAdapter();
 
         // Checks if Bluetooth is supported on the device.
-        if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
-            finish();
+        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
     }
 
@@ -223,8 +224,8 @@ public class DeviceConnectionActivity extends ListActivity {
             if (view == null) {
                 view = mInflator.inflate(R.layout.device_view, null);
                 viewHolder = new ViewHolder();
-                viewHolder.deviceAddress = (TextView) view.findViewById(R.id.profileName);
-                viewHolder.deviceName = (TextView) view.findViewById(R.id.lastConnected);
+                viewHolder.deviceAddress = (TextView) view.findViewById(R.id.deviceName);
+                viewHolder.deviceName = (TextView) view.findViewById(R.id.deviceAddress);
                 view.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) view.getTag();

@@ -23,7 +23,7 @@ public class OnboardingActivity extends AppCompatActivity {
         mConnectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OnboardingActivity.this, DeviceConnectionActivity.class);
+                Intent intent = new Intent(OnboardingActivity.this, DeviceScanActivity.class);
                 startActivity(intent);
                 finish();
             }

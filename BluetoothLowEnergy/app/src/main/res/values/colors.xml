@@ -17,4 +17,10 @@
     <color name="color_blue">#2698DD</color>
     <color name="color_purple">#9E69E2</color>
     <color name="color_white">#ffffff</color>
+    
+    <color name="app_darker_blue">#053d7f</color>
+    <color name="app_dark_blue">#0862cc</color>
+    <color name="app_blue">#0A7AFF</color>
+    <color name="app_light_blue">#57A4FF</color>
+    <color name="app_grey">#4A627F</color>
 </resources>

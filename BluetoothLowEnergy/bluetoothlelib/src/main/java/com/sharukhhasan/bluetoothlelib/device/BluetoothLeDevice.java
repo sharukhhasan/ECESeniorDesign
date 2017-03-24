@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.sharukhhasan.bluetoothlelib.device.adrecord.AdRecordStore;
+import com.sharukhhasan.bluetoothlelib.resolvers.BluetoothClassResolver;
 import com.sharukhhasan.bluetoothlelib.util.AdRecordUtils;
 import com.sharukhhasan.bluetoothlelib.util.LimitedLinkHashMap;
 

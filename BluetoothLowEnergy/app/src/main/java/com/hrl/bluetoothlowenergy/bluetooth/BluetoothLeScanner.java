@@ -1,13 +1,9 @@
-package com.hrl.bluetoothlowenergy.utils;
+package com.hrl.bluetoothlowenergy.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.os.Handler;
 import android.util.Log;
 
-/**
- * Created by Sharukh Hasan on 3/24/17.
- *
- */
 public class BluetoothLeScanner {
     private final Handler mHandler;
     private final BluetoothAdapter.LeScanCallback mLeScanCallback;
@@ -50,3 +46,4 @@ public class BluetoothLeScanner {
         }
     }
 }
+

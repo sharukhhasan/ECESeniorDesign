@@ -1,4 +1,4 @@
-package com.hrl.bluetoothlowenergy.utils;
+package com.hrl.bluetoothlowenergy.bluetooth;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -7,10 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
-/**
- * Created by Sharukh Hasan on 3/24/17.
- *
- */
 public final class BluetoothUtils {
     public final static int REQUEST_ENABLE_BT = 2001;
     private final Activity mActivity;
