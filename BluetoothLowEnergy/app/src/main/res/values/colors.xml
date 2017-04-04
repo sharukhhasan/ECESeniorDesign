@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+
+    <color name="bluetooth_blue">#0082FC</color>
+    <color name="light_gray">#66e0e0e0</color>
+
+    <color name="colorPrimary">@color/bluetooth_blue</color>
     <color name="colorPrimaryDark">#3F51B5</color>
     <color name="colorAccent">#FF4081</color>
-
     <color name="colorSeparator">@color/colorAccent</color>
-
 
     <color name="status_red">#C71717</color>
     <color name="status_yellow">#E0BE33</color>

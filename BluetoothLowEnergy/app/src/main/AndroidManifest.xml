@@ -43,6 +43,10 @@
             android:name=".activity.DeviceScanActivity"
             android:label="@string/title_activity_device_scan"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.DeviceDetailsActivity"
+            android:label="@string/title_activity_device_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

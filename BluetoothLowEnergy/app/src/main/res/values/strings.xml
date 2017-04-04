@@ -105,4 +105,5 @@
     <string name="error_unable_to_access_external_storage">"Could not access external storage!"</string>
     <string name="permission_not_granted_coarse_location">The ACCESS_COARSE_LOCATION permission is needed to receive bluetooth scan results</string>
     <string name="hrl_senior_design_project">HRL Senior Design Project</string>
+    <string name="title_activity_device_details">DeviceDetailsActivity</string>
 </resources>

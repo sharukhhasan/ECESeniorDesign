@@ -6,11 +6,14 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 
 import com.hrl.bluetoothlowenergy.R;
+import com.hrl.bluetoothlowenergy.activity.DeviceControlActivity;
+import com.hrl.bluetoothlowenergy.activity.DeviceDetailsActivity;
+import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 
 /**
- * Created by sharukhhasan on 3/24/17.
+ * Created by Sharukh Hasan on 3/24/17.
+ *
  */
-
 public class Navigation {
 
     private final Activity mActivity;
@@ -19,7 +22,7 @@ public class Navigation {
         mActivity = activity;
     }
 
-    /*public void openDetailsActivity(final BluetoothLeDevice device) {
+    public void openDetailsActivity(final BluetoothLeDevice device) {
         final Intent intent = DeviceDetailsActivity.createIntent(mActivity, device);
 
         startActivity(intent);
@@ -29,7 +32,7 @@ public class Navigation {
         final Intent intent = DeviceControlActivity.createIntent(mActivity, device);
 
         startActivity(intent);
-    }*/
+    }
 
     public void shareFileViaEmail(final Uri fileUri, final String[] recipient, final String subject, final String message) {
         final Intent intent = new Intent(Intent.ACTION_SEND);
