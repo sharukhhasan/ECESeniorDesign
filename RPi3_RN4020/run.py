@@ -13,12 +13,7 @@ def serial_worker(responder_instance: Responder, ser_instance: serial):
     run_serial_connection(responder_instance, ser_instance)
 
 
-ser = serial.Serial(
-    port="COM1",
-    baudrate=115200,
-    bytesize=serial.EIGHTBITS,
-    stopbits=serial.STOPBITS_ONE,
-    rtscts=True)
+ser = serial.Serial(port="/dev/ttyAMA0", baudrate=115200, bytesize=serial.EIGHTBITS, stopbits=serial.STOPBITS_ONE, rtscts=True)
 
 responder = Responder.Responder()
 

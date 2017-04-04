@@ -60,9 +60,6 @@ class Responder:
         elif re.match("^SUR,[0-9]{32}$", request):
             response = self.__sur(request)
 
-        # TODO: Tommy, feel free to implement these methods as desired
-        # These codes are functional on the module but are useless here.
-        # They will return AOK.
         elif re.match("^PC,[0-9]+,[0-9a-zA-Z]+,[0-9a-zA-Z]+$", request):
             response = self.__message_aok
         elif re.match("^PS,[0-9]{32}$", request):

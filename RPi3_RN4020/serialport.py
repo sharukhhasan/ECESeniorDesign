@@ -5,11 +5,9 @@ from Responder import Responder
 
 
 def run_serial_connection(responder: Responder, ser: serial):
-    """Constantly monitors the serial connection and responds back
-    :param responder:
-    :param ser:
-    """
+  
     print(colored("connected to: " + ser.portstr, "green"))
+    
     while True:
         try:
             read_text = ser.readline()
