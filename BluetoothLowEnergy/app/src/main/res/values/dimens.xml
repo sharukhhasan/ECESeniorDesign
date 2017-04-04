@@ -5,4 +5,7 @@
 
     <dimen name="title_size">20sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="space_between_sections">8dp</dimen>
+
 </resources>

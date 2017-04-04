@@ -25,7 +25,8 @@ import java.util.ArrayList;
 import com.hrl.bluetoothlowenergy.R;
 
 /**
- * Activity for scanning and displaying available Bluetooth LE devices.
+ * Created by Sharukh Hasan on 3/22/17.
+ *
  */
 public class DeviceScanActivity extends ListActivity {
     private LeDeviceListAdapter mLeDeviceListAdapter;
@@ -40,7 +41,7 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getActionBar().setTitle(R.string.title_devices);
+        setContentView(R.layout.activity_device_scan);
         mHandler = new Handler();
 
         // Use this check to determine whether BLE is supported on the device.  Then you can

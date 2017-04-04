@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#3F51B5</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="colorSeparator">@color/colorAccent</color>
+
+
     <color name="status_red">#C71717</color>
     <color name="status_yellow">#E0BE33</color>
     <color name="status_green">#5DBA5D</color>

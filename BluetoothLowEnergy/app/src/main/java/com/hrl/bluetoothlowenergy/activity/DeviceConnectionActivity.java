@@ -27,9 +27,10 @@ import java.util.ArrayList;
 
 import com.hrl.bluetoothlowenergy.R;
 import com.hrl.bluetoothlowenergy.utils.OrientationUtils;
+
 /**
- * Created by Sharukh Hasan on 8/14/16.
- * Copyright © 2016 Coapt Engineering. All rights reserved.
+ * Created by Sharukh Hasan on 3/23/17.
+ *
  */
 public class DeviceConnectionActivity extends ListActivity {
     private static final String TAG = "DeviceConnectionActivity";
