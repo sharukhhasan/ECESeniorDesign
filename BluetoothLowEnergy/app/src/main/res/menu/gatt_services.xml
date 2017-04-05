@@ -24,5 +24,10 @@
         android:orderInCategory="103"
         android:title="@string/menu_disconnect"
         app:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/menu_advance_forward"
+        android:orderInCategory="104"
+        android:title="Accept"
+        app:showAsAction="ifRoom|withText" />
 
 </menu>

@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.hrl.bluetoothlowenergy.R;
+import com.hrl.bluetoothlowenergy.activity.common.Navigation;
 import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 import com.hrl.bluetoothlowenergy.bluetooth.resolvers.GattAttributeResolver;
 import com.hrl.bluetoothlowenergy.bluetooth.service.BluetoothLeService;
@@ -61,6 +62,7 @@ public class DeviceControlActivity extends AppCompatActivity {
 
     protected TextView mDataAsArray;
     private Exporter mExporter;
+
     private BluetoothGattCharacteristic mNotifyCharacteristic;
     private BluetoothLeService mBluetoothLeService;
 
@@ -211,16 +213,19 @@ public class DeviceControlActivity extends AppCompatActivity {
         switch (mCurrentState) {
 
             case DISCONNECTED:
+                menu.findItem(R.id.menu_advance_forward).setVisible(false);
                 menu.findItem(R.id.menu_connect).setVisible(true);
                 menu.findItem(R.id.menu_disconnect).setVisible(false);
                 menu.findItem(R.id.menu_refresh).setActionView(null);
                 break;
             case CONNECTING:
+                menu.findItem(R.id.menu_advance_forward).setVisible(false);
                 menu.findItem(R.id.menu_connect).setVisible(false);
                 menu.findItem(R.id.menu_disconnect).setVisible(false);
                 menu.findItem(R.id.menu_refresh).setActionView(R.layout.actionbar_indeterminate_progress);
                 break;
             case CONNECTED:
+                menu.findItem(R.id.menu_advance_forward).setVisible(true);
                 menu.findItem(R.id.menu_connect).setVisible(false);
                 menu.findItem(R.id.menu_disconnect).setVisible(true);
                 menu.findItem(R.id.menu_refresh).setActionView(null);
@@ -256,6 +261,9 @@ public class DeviceControlActivity extends AppCompatActivity {
                 return true;
             case android.R.id.home:
                 onBackPressed();
+                return true;
+            case R.id.menu_advance_forward:
+                new Navigation(this).startMainActivity(mDevice);
                 return true;
             case R.id.menu_share:
                 final Intent intent = new Intent(android.content.Intent.ACTION_SEND);

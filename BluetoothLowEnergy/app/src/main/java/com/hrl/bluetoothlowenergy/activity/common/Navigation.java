@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import com.hrl.bluetoothlowenergy.R;
 import com.hrl.bluetoothlowenergy.activity.DeviceControlActivity;
 import com.hrl.bluetoothlowenergy.activity.DeviceDetailsActivity;
+import com.hrl.bluetoothlowenergy.activity.MainActivity;
 import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 
 /**
@@ -31,6 +32,11 @@ public class Navigation {
     public void startControlActivity(final BluetoothLeDevice device) {
         final Intent intent = DeviceControlActivity.createIntent(mActivity, device);
 
+        startActivity(intent);
+    }
+
+    public void startMainActivity(final BluetoothLeDevice device) {
+        final Intent intent = MainActivity.createIntent(mActivity, device);
         startActivity(intent);
     }
 
