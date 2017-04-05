@@ -7,44 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.hrl.bluetoothlowenergy.activity.DeviceScanActivity">
 
-    <android.support.design.widget.AppBarLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                android:textColor="@color/color_white"
-                android:textSize="18sp"
-                android:typeface="normal"
-                android:textAllCaps="false"
-                style="@android:style/Widget.DeviceDefault.Light.Button.Borderless.Small"
-                android:id="@+id/scanToggleBtn" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/toolbar_title_scan"
-                android:text="Pair with a device"
-                android:textColor="@color/coapt_white"
-                android:textSize="18sp"
-                android:typeface="normal" />
-
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
-
     <include layout="@layout/content_device_scan" />
 
 </android.support.design.widget.CoordinatorLayout>

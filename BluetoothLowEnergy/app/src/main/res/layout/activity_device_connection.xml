@@ -7,22 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.hrl.bluetoothlowenergy.activity.DeviceConnectionActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Devices"
-            android:textSize="@dimen/title_size"
-            android:layout_gravity="center"
-            android:id="@+id/toolbar_title" />
-
-    </android.support.design.widget.AppBarLayout>
-
     <include layout="@layout/content_device_connection" />
 
 </android.support.design.widget.CoordinatorLayout>
