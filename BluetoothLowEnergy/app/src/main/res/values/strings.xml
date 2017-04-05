@@ -106,4 +106,9 @@
     <string name="permission_not_granted_coarse_location">The ACCESS_COARSE_LOCATION permission is needed to receive bluetooth scan results</string>
     <string name="hrl_senior_design_project">HRL Senior Design Project</string>
     <string name="title_activity_device_details">DeviceDetailsActivity</string>
+    <string name="capture_image_receive_via_bluetooth">Capture Image Receive via Bluetooth</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="view_device_details">View Device Details</string>
+    <string name="remote_shutdown">Remote Shutdown</string>
+    <string name="disconnect_from_device">Disconnect From Device</string>
 </resources>

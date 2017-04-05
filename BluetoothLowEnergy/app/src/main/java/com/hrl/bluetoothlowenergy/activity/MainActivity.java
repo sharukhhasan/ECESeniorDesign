@@ -10,6 +10,7 @@ import com.hrl.bluetoothlowenergy.R;
  * Main activity
  */
 public class MainActivity extends AppCompatActivity {
+    public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

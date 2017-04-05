@@ -3,6 +3,7 @@ package com.hrl.bluetoothlowenergy.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,8 +54,9 @@ public class DeviceDetailsActivity extends AppCompatActivity {
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mDevice = getIntent().getParcelableExtra(EXTRA_DEVICE);
 
-        getSupportActionBar().setTitle(mDevice.getName());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar supportActionBar = this.getSupportActionBar();
+        supportActionBar.setTitle(mDevice.getName());
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
 
         pupulateDetails(mDevice);
     }

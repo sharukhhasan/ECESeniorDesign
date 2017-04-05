@@ -20,6 +20,7 @@ import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -137,15 +138,28 @@ public class DeviceControlActivity extends AppCompatActivity {
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 final String noData = getString(R.string.no_data);
                 final String uuid = intent.getStringExtra(BluetoothLeService.EXTRA_UUID_CHAR);
-                final byte[] dataArr = intent.getByteArrayExtra(BluetoothLeService.EXTRA_DATA_RAW);
+                final String dataArr = intent.getStringExtra(BluetoothLeService.EXTRA_DATA_RAW);
 
-                mGattUUID.setText(tryString(uuid, noData));
-                mGattUUIDDesc.setText(GattAttributeResolver.getAttributeName(uuid, getString(R.string.unknown)));
-                mDataAsArray.setText(ByteUtils.byteArrayToHexString(dataArr));
-                mDataAsString.setText(new String(dataArr));
+                goToMainActivity(uuid, dataArr);
+
+                Log.d(TAG, tryString(uuid,noData));
+                Log.d(TAG, tryString(dataArr, noData));
+
+                //mGattUUID.setText(tryString(uuid, noData));
+                //mGattUUIDDesc.setText(GattAttributeResolver.getAttributeName(uuid, getString(R.string.unknown)));
+                //mDataAsArray.setText(tryString(dataArr, noData));
+                //mDataAsString.setText(tryString(dataArr, noData));
             }
         }
     };
+
+    public void goToMainActivity(String uuid, String data) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(EXTRAS_DEVICE_NAME, uuid);
+        intent.putExtra(EXTRAS_DEVICE_NAME, data);
+        startActivity(intent);
+        finish();
+    }
 
     private void clearUI() {
         mExportString = null;

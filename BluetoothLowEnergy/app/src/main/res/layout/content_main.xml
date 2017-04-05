@@ -1,48 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <View
+    <ImageView
+        android:id="@+id/bleImageView"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"/>
-
-    <TextView
-        android:id="@+id/deviceNameTextView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/device_name_title"/>
-
-    <TextView
-        android:id="@+id/deviceName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/deviceAddressTextView"/>
+        android:src="@drawable/ble_icon"
+        android:layout_above="@+id/firstDivder"
+        android:layout_marginBottom="5dp"/>
 
     <View
+        android:id="@+id/firstDivder"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"/>
+        android:layout_height="3dp"
+        android:background="@android:color/darker_gray"
+        android:layout_alignTop="@+id/settingsButtonLayout"/>
 
-    <TextView
-        android:id="@+id/deviceAddressTextView"
+    <RelativeLayout
+        android:id="@+id/settingsButtonLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:showDividers="beginning|end"
+        android:background="@color/color_white"
+        android:layout_above="@+id/mainActivityBtnLayout"
+        android:layout_alignParentStart="false"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/connectedTextView"
+            android:textStyle="bold"
+            android:layout_below="@+id/deviceTextView"
+            android:gravity="start"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/deviceTextView"
+            android:textSize="30sp"
+            android:textColor="@color/color_gray"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/mainActivityBtnLayout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/deviceName"
-        android:text="@string/device_mac_address_title" />
+        android:divider="@drawable/divider"
+        android:showDividers="beginning|middle|end"
+        android:layout_above="@+id/disconnectButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/deviceAddress"
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture Image\nTake a picture and receive it via Bluetooth"
+            android:id="@+id/captureImageButton"
+            android:drawableStart="@drawable/captureimage"
+            android:gravity="start|center_vertical"
+            android:background="#FFFFFF"
+            android:textAllCaps="false"
+            android:textColor="@color/color_darkergray"
+            android:elevation="2dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Device Details\nName, UUID, Services and Characteristics, RSSI"
+            android:id="@+id/deviceDetailsButton"
+            android:drawableStart="@drawable/device_details"
+            android:gravity="start|center_vertical"
+            android:background="#FFFFFF"
+            android:textAllCaps="false"
+            android:textColor="@color/color_darkergray"
+            android:elevation="2dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remote Shutdown\nPower off the peripheral device"
+            android:id="@+id/remoteShutdownButton"
+            android:drawableStart="@drawable/remote_shutoff"
+            android:gravity="start|center_vertical"
+            android:background="#FFFFFF"
+            android:textAllCaps="false"
+            android:textColor="@color/color_darkergray"
+            android:elevation="2dp" />
+
+    </LinearLayout>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/deviceAddressTextView"/>
+        android:text="@string/disconnect_from_device"
+        android:id="@+id/disconnectButton"
+        android:drawableStart="@drawable/bluetooth_searching"
+        android:background="@drawable/rounded_button_blue"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:width="350dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:elevation="2dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"/>
 
 </RelativeLayout>

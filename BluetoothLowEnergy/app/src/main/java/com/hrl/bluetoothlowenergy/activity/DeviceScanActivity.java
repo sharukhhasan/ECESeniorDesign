@@ -39,26 +39,19 @@ import com.hrl.bluetoothlowenergy.bluetooth.util.BluetoothUtils;
 import com.hrl.bluetoothlowenergy.utils.DialogFactory;
 import com.hrl.bluetoothlowenergy.utils.Sharer;
 
-// import butterknife.BindView;
-// import butterknife.ButterKnife;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Sharukh Hasan on 3/22/17.
  *
  */
 public class DeviceScanActivity extends AppCompatActivity {
-    //@BindView(R.id.tvBluetoothLe) TextView mTvBluetoothLeStatus;
-    //@BindView(R.id.tvBluetoothStatus) TextView mTvBluetoothStatus;
-    //@BindView(R.id.tvItemCount) TextView mTvItemCount;
-    //@BindView(android.R.id.list) RecyclerView mList;
-    //@BindView(android.R.id.empty) View mEmpty;
-
-    private TextView mTvBluetoothLeStatus;
-    private TextView mTvBluetoothStatus;
-    private TextView mTvItemCount;
-    private Button mScanToggle;
-    private RecyclerView mList;
-    private View mEmpty;
+    @BindView(R.id.tvBluetoothLe) TextView mTvBluetoothLeStatus;
+    @BindView(R.id.tvBluetoothStatus) TextView mTvBluetoothStatus;
+    @BindView(R.id.tvItemCount) TextView mTvItemCount;
+    @BindView(android.R.id.list) RecyclerView mList;
+    @BindView(android.R.id.empty) View mEmpty;
 
     private RecyclerViewBinderCore mCore;
     private BluetoothUtils mBluetoothUtils;
@@ -98,34 +91,7 @@ public class DeviceScanActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_scan);
-        //ButterKnife.bind(this);
-
-        toggleFlag = false;
-
-        mTvBluetoothLeStatus = (TextView) findViewById(R.id.tvBluetoothLe);
-        mTvBluetoothStatus = (TextView) findViewById(R.id.tvBluetoothStatus);
-        mTvItemCount = (TextView) findViewById(R.id.tvItemCount);
-
-        mScanToggle = (Button) findViewById(R.id.scanToggleBtn);
-        mScanToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!toggleFlag) {
-                    toggleFlag = true;
-                    mScanToggle.setText(R.string.menu_stop);
-                    startScanPrepare();
-                } else {
-                    toggleFlag = false;
-                    mScanToggle.setText(R.string.menu_scan);
-                    mScanner.scanLeDevice(-1, false);
-                }
-            }
-        });
-
-        mList = (RecyclerView) findViewById(android.R.id.list);
-
-        mEmpty = (View) findViewById(android.R.id.empty);
-
+        ButterKnife.bind(this);
 
         mCore = RecyclerViewCoreFactory.create(this, new Navigation(this));
         mList.setLayoutManager(new LinearLayoutManager(this));
