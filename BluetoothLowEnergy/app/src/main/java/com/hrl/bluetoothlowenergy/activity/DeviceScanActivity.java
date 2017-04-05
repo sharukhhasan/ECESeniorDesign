@@ -46,16 +46,11 @@ import butterknife.ButterKnife;
  *
  */
 public class DeviceScanActivity extends AppCompatActivity {
-    @BindView(R.id.tvBluetoothLe)
-    protected TextView mTvBluetoothLeStatus;
-    @BindView(R.id.tvBluetoothStatus)
-    protected TextView mTvBluetoothStatus;
-    @BindView(R.id.tvItemCount)
-    protected TextView mTvItemCount;
-    @BindView(android.R.id.list)
-    protected RecyclerView mList;
-    @BindView(android.R.id.empty)
-    protected View mEmpty;
+    @BindView(R.id.tvBluetoothLe) TextView mTvBluetoothLeStatus;
+    @BindView(R.id.tvBluetoothStatus) TextView mTvBluetoothStatus;
+    @BindView(R.id.tvItemCount) TextView mTvItemCount;
+    @BindView(android.R.id.list) RecyclerView mList;
+    @BindView(android.R.id.empty) View mEmpty;
 
     private RecyclerViewBinderCore mCore;
     private BluetoothUtils mBluetoothUtils;

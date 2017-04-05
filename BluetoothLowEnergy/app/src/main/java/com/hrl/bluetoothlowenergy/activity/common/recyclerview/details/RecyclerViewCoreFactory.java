@@ -28,7 +28,7 @@ public class RecyclerViewCoreFactory {
         core.add(new AdRecordBinder(context), AdRecordHolder.class, R.layout.list_item_view_adrecord);
         core.add(new RssiBinder(context), RssiInfoHolder.class, R.layout.list_item_view_rssi_info);
         core.add(new DeviceInfoBinder(context), DeviceInfoHolder.class, R.layout.list_item_view_device_info);
-        core.add(new IBeaconBinder(context), IBeaconHolder.class, R.layout.list_item_view_ibeacon_details);
+        //core.add(new IBeaconBinder(context), IBeaconHolder.class, R.layout.list_item_view_ibeacon_details);
 
         return core;
     }

@@ -46,8 +46,7 @@ public class IBeaconBinder extends BaseViewBinder<IBeaconItem> {
 
     @Override
     public void bind(BaseViewHolder<IBeaconItem> holder, IBeaconItem item) {
-        final BaseViewHolder<IBeaconItem> actualHolder = holder;
-
+        /*final IBeaconHolder actualHolder = (IBeaconHolder) holder;
 
         final String companyName = CompanyIdentifierResolver.getCompanyName(item.getCompanyIdentifier(), getContext().getString(R.string.unknown));
 
@@ -56,7 +55,7 @@ public class IBeaconBinder extends BaseViewBinder<IBeaconItem> {
         actualHolder.getUuid().setText(item.getUuid());
         actualHolder.getMajor().setText(getWithHexEncode(item.getMajor()));
         actualHolder.getMinor().setText(getWithHexEncode(item.getMinor()));
-        actualHolder.getTxPower().setText(getWithHexEncode(item.getCalibratedTxPower()));
+        actualHolder.getTxPower().setText(getWithHexEncode(item.getCalibratedTxPower()));*/
     }
 
     @Override

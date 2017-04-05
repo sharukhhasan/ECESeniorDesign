@@ -19,7 +19,7 @@ import com.hrl.bluetoothlowenergy.activity.common.recyclerview.details.model.Dev
 import com.hrl.bluetoothlowenergy.activity.common.recyclerview.details.model.HeaderItem;
 import com.hrl.bluetoothlowenergy.activity.common.recyclerview.details.model.RssiItem;
 import com.hrl.bluetoothlowenergy.activity.common.recyclerview.details.model.TextItem;
-import com.hrl.bluetoothlowenergy.activity.common.recyclerview.scan.RecyclerViewCoreFactory;
+import com.hrl.bluetoothlowenergy.activity.common.recyclerview.details.RecyclerViewCoreFactory;
 import com.hrl.bluetoothlowenergy.activity.common.recyclerview.details.model.IBeaconItem;
 import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 import com.hrl.bluetoothlowenergy.bluetooth.device.adrecord.AdRecord;
@@ -41,7 +41,7 @@ public class DeviceDetailsActivity extends AppCompatActivity {
     private static final int LAYOUT_ID = R.layout.activity_device_details;
 
     @BindView(R.id.recycler)
-    protected RecyclerView mRecycler;
+    public RecyclerView mRecycler;
     private BluetoothLeDevice mDevice;
 
     @Override
