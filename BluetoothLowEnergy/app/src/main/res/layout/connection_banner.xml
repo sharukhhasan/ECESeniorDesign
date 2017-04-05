@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/banner_network_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="56dp"
+    android:gravity="center"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:id="@+id/banner_network_disconnected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#93979B"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No connection. "
+            android:textColor="#F0F0F0"/>
+
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:flipInterval="900">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retrying..."
+                android:textColor="#F0F0F0"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </ViewFlipper>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/banner_network_connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#44bb44"
+        android:gravity="center"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp"
+        android:text="Reconnected!"
+        android:textColor="#F0F0F0"
+        android:visibility="gone"/>
+</RelativeLayout>
