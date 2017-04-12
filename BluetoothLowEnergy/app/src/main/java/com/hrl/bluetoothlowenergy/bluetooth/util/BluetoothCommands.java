@@ -2,8 +2,9 @@ package com.hrl.bluetoothlowenergy.bluetooth.util;
 
 /**
  * Created by Sharukh Hasan on 4/3/17.
+ *
  */
-public class BluetoothConstants {
+public class BluetoothCommands {
 
     // UART Configuration
     public static final int BAUDRATE = 115200;
@@ -11,6 +12,12 @@ public class BluetoothConstants {
     public static final int PARITY = 0;
     public static final int STOP_BITS = 1;
     public static final int FLOW_CONTROL = 0;
+
+    // Role switch commands
+    public static final char START_ADVERTISING = 'A';
+    public static final char START_SCANNING = 'F';
+    public static final char CONNECT_COMMAND = 'E';
+    public static final char ENTER_BROADCASTER = 'N';
 
     // Set/Get Commands
     public static final String GET_SERIALIZED_NAME = "S-";
