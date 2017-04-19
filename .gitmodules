@@ -1,0 +1,3 @@
+[submodule "ObexProtocol"]
+	path = ObexProtocol
+	url = git@github.com:sharukhhasan/ObexProtocol.git
