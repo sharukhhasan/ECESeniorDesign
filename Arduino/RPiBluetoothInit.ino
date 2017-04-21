@@ -37,4 +37,5 @@ void loop() {
 			digitalWrite(image_pin, LOW);
 		}
 	}
+	delay(100);
 }
