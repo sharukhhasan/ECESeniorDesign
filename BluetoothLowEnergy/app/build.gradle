@@ -49,9 +49,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    compile 'com.android.support:gridlayout-v7:25.3.0'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:gridlayout-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 
     // ButterKnife dependency injection lib
@@ -71,5 +71,4 @@ dependencies {
 
     compile 'com.anthonycr.grant:permissions:1.0'
     compile 'uk.co.alt236:easycursor-android:1.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 }

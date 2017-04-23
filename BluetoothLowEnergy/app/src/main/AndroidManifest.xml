@@ -45,6 +45,10 @@
         <activity
             android:name=".activity.DeviceDetailsActivity"
             android:label="@string/title_activity_device_details" />
+        <activity
+            android:name=".blue.ConnectionActivity"
+            android:label="@string/title_activity_connection"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
