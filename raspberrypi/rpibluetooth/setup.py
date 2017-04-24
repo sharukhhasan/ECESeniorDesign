@@ -4,16 +4,16 @@ except ImportError:
     from distutils.core import setup
 
 config = {
-    'description': 'My Project',
-    'author': 'My Name',
-    'url': 'URL to get it at.',
-    'download_url': 'Where to download it.',
-    'author_email': 'My email.',
+    'description': 'ECE Senior Design Spring 2017',
+    'author': 'Sharukh Hasan, Amanda Beadle, Heba Omar, Rui Xi, Richard',
+    'url': 'https://github.com/sharukhhasan/ECESeniorDesign',
+    'download_url': 'https://github.com/sharukhhasan/ECESeniorDesign.git',
+    'author_email': 'sharukh-hasan@uiowa.edu',
     'version': '0.1',
     'install_requires': ['nose'],
-    'packages': ['NAME'],
+    'packages': ['rpi'],
     'scripts': [],
-    'name': 'projectname'
+    'name': 'rpibluetooth'
 }
 
 setup(**config)
