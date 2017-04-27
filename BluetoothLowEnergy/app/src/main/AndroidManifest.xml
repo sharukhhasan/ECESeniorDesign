@@ -46,10 +46,17 @@
             android:name=".activity.DeviceDetailsActivity"
             android:label="@string/title_activity_device_details" />
         <activity
-            android:name=".blue.ConnectionActivity"
+            android:name=".activity.ConnectionActivity"
             android:label="@string/title_activity_connection"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".blue.DeviceConnectActivity"></activity>
+        <activity
+            android:name=".activity.CaptureImageActivity"
+            android:label="@string/title_activity_capture_image"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

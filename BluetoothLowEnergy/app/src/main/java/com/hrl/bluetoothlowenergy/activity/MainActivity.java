@@ -18,10 +18,7 @@ import android.widget.TextView;
 import com.hrl.bluetoothlowenergy.R;
 import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 import com.hrl.bluetoothlowenergy.bluetooth.service.BluetoothLeService;
-import com.hrl.bluetoothlowenergy.utils.DialogFactory;
 import com.hrl.bluetoothlowenergy.utils.OrientationUtils;
-import com.hrl.bluetoothlowenergy.utils.Sharer;
-import com.squareup.haha.perflib.Main;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +31,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final String EXTRA_DEVICE = MainActivity.class.getName() + ".EXTRA_DEVICE";
     private static final String DEVICE_DISCONNECTED = "Disconnected";
     private static final String DEVICE_CONNECTED = "Connected";
 
@@ -48,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothLeService mBluetoothLeService;
     private BluetoothLeDevice mDevice;
 
+    private String mDeviceName;
+    private String mDeviceAddress;
+
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
             // Automatically connects to the device upon successful start-up initialization.
-            mBluetoothLeService.connect(mDevice.getAddress());
+            mBluetoothLeService.connect(mDeviceAddress);
         }
 
         @Override
@@ -72,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
-                // updateConnectionTextView(DEVICE_CONNECTED, R.color.color_green);
+                updateConnectionTextView(DEVICE_CONNECTED, R.color.color_green);
                 Log.d(TAG, "Connected");
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
-                // updateConnectionTextView(DEVICE_DISCONNECTED, R.color.color_red);
+                updateConnectionTextView(DEVICE_DISCONNECTED, R.color.color_red);
                 Log.d(TAG, "Disconnected");
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Show all the supported services and characteristics on the user interface.
@@ -93,16 +92,17 @@ public class MainActivity extends AppCompatActivity {
         OrientationUtils.lockOrientationPortrait(this);
 
         final Intent intent = getIntent();
-        mDevice = intent.getParcelableExtra(EXTRA_DEVICE);
+        mDeviceName = intent.getParcelableExtra(ConnectionActivity.EXTRA_DEVICE_NAME);
+        mDeviceAddress = intent.getParcelableExtra(ConnectionActivity.EXTRA_DEVICE_ADDRESS);
 
         ButterKnife.bind(this);
 
         getSupportActionBar().setTitle("Main Menu");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDeviceTextView.setText("Sharukh's Macbook Pro");
+        mDeviceTextView.setText(mDeviceName);
         mDeviceTextView.setTextColor(getResources().getColor(R.color.color_darkergray));
-        mConnectionTextView.setText("Connected");
+        //mConnectionTextView.setText("Connected");
         mConnectionTextView.setTextColor(getResources().getColor(R.color.color_green));
 
         final Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
@@ -148,12 +148,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         unbindService(mServiceConnection);
         mBluetoothLeService = null;
-    }
-
-    public static Intent createIntent(final Context context, final BluetoothLeDevice device) {
-        final Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(MainActivity.EXTRA_DEVICE, device);
-        return intent;
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {

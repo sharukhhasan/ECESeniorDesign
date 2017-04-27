@@ -263,7 +263,6 @@ public class DeviceControlActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.menu_advance_forward:
-                new Navigation(this).startMainActivity(mDevice);
                 return true;
             case R.id.menu_share:
                 final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
