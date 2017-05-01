@@ -25,6 +25,7 @@ android {
         targetSdkVersion targetSdk
         versionCode androidVersionCode
         versionName semanticVersion
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -38,6 +39,7 @@ android {
 }
 
 repositories {
+    jcenter()
     maven {
         url "https://dl.bintray.com/alt236/maven"
     }
@@ -48,10 +50,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    compile 'com.android.support:gridlayout-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:gridlayout-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 
     // ButterKnife dependency injection lib
@@ -71,5 +73,7 @@ dependencies {
 
     compile 'com.anthonycr.grant:permissions:1.0'
     compile 'uk.co.alt236:easycursor-android:1.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.github.ybq:Android-SpinKit:1.1.0'
+
+    compile group:'com.twofortyfouram', name:'android-plugin-api-for-locale', version:'[1.0.2,2.0['
 }

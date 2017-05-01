@@ -35,11 +35,6 @@ public class Navigation {
         startActivity(intent);
     }
 
-    public void startMainActivity(final BluetoothLeDevice device) {
-        final Intent intent = MainActivity.createIntent(mActivity, device);
-        startActivity(intent);
-    }
-
     public void shareFileViaEmail(final Uri fileUri, final String[] recipient, final String subject, final String message) {
         final Intent intent = new Intent(Intent.ACTION_SEND);
 
