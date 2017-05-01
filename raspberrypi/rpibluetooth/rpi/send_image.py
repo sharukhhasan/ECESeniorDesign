@@ -1,16 +1,22 @@
-import bluetooth
+from bluetooth import *
 
 server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-server_socket.bind(("", bluetooth.PORT_ANY))
+port = server_socket
+server_socket.bind(("", port))
 server_socket.listen(1)
 
-port = server_socket.getsockname()[1]
+"""uuid = "00001111-0000-1000-8000-00805f9b34fb"
+"""
+uuid = "1e0ca4ea-299d-4335-93eb-27fcfe7fa848"
 
-uuid = "00001111-0000-1000-8000-00805f9b34fb"
+bluetooth.advertise_service(server_socket, "Echo Server",
+							service_id = uuid,
+							service_classes = [uuid, SERIAL_PORT_CLASS],
+							profiles = [SERIAL_PORT_PROFILE])
+														
 
-bluetooth.advertise_service(server_socket, "Echo Server", service_id=uuid,
-                            service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
-                            profiles=[bluetooth.SERIAL_PORT_PROFILE])
+def setupConnection():
+	server_sock = BluetoothSocket(RMCOMM
 
 
 def wait_for_connection():
@@ -35,8 +41,8 @@ def listen_for_data(client_socket):
 
         except KeyboardInterrupt:
             print "Shutting down socket"
-            server_socket.close()
             client_socket.close()
+            server_sock.close()
 
 
 wait_for_connection()
