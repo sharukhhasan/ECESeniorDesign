@@ -1,5 +1,6 @@
 #define BLUETOOTH_BAUDRATE 9600
 #define SHUTOFF_COMMAND 72	// ASCII character 'H'
+#define POWER_ON_COMMAND 74 // ASCII character 'J'
 #define IMAGE_COMMAND 73	// ASCII character 'I'
 
 #include <SoftwareSerial.h>

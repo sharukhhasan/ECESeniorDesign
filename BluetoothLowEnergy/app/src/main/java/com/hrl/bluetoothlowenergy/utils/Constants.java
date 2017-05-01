@@ -1,5 +1,7 @@
 package com.hrl.bluetoothlowenergy.utils;
 
+import android.os.ParcelUuid;
+
 import java.text.DecimalFormat;
 
 /**
@@ -7,6 +9,8 @@ import java.text.DecimalFormat;
  *
  */
 public class Constants {
+
+    public static final ParcelUuid OBEX_OBJECT_PUSH = ParcelUuid.fromString("00001105-0000-1000-8000-00805f9b34fb");
 
     public static final DecimalFormat DOUBLE_TWO_DIGIT_ACCURACY = new DecimalFormat("#.##");
     public static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";

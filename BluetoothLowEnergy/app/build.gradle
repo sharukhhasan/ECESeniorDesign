@@ -39,6 +39,7 @@ android {
 }
 
 repositories {
+    jcenter()
     maven {
         url "https://dl.bintray.com/alt236/maven"
     }
@@ -73,4 +74,6 @@ dependencies {
     compile 'com.anthonycr.grant:permissions:1.0'
     compile 'uk.co.alt236:easycursor-android:1.0.0'
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
+
+    compile group:'com.twofortyfouram', name:'android-plugin-api-for-locale', version:'[1.0.2,2.0['
 }
