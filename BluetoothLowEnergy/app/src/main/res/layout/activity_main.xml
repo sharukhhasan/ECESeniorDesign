@@ -9,9 +9,5 @@
 
     <include layout="@layout/content_main"/>
 
-    <com.hrl.bluetoothlowenergy.activity.common.banner.ConnectionBanner
-        android:id="@+id/connection_banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </android.support.design.widget.CoordinatorLayout>

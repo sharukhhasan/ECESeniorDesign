@@ -28,7 +28,7 @@ public class ConnectionActivity extends Activity {
     public static String EXTRA_DEVICE_NAME = "device_name";
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
-    private BluetoothAdapter mBtAdapter;
+    private BluetoothAdapter mBluetoothAdapter;
     private ArrayList<BluetoothDevice> mDeviceList;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
 
@@ -63,12 +63,12 @@ public class ConnectionActivity extends Activity {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         this.registerReceiver(mReceiver, filter);
 
-        filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        this.registerReceiver(mReceiver, filter);
+        IntentFilter discoveryFinishedFilter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        registerReceiver(mReceiver, discoveryFinishedFilter);
 
-        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 
         if (pairedDevices.size() > 0) {
             findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
@@ -85,8 +85,8 @@ public class ConnectionActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (mBtAdapter != null) {
-            mBtAdapter.cancelDiscovery();
+        if (mBluetoothAdapter != null) {
+            mBluetoothAdapter.cancelDiscovery();
         }
 
         this.unregisterReceiver(mReceiver);
@@ -100,26 +100,25 @@ public class ConnectionActivity extends Activity {
 
         findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
 
-        if (mBtAdapter.isDiscovering()) {
-            mBtAdapter.cancelDiscovery();
+        if (mBluetoothAdapter.isDiscovering()) {
+            mBluetoothAdapter.cancelDiscovery();
         }
 
-        mBtAdapter.startDiscovery();
+        mBluetoothAdapter.startDiscovery();
     }
 
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-            mBtAdapter.cancelDiscovery();
+            mBluetoothAdapter.cancelDiscovery();
 
             String info = ((TextView) v).getText().toString();
             String name = info.split("\n")[0];
             String address = info.split("\n")[1];
-            // String address = info.substring(info.length() - 17);
 
             Log.d(TAG, name);
             Log.d(TAG, "Device address: " + address);
 
-            Intent intent = new Intent(ConnectionActivity.this, Main2Activity.class);
+            Intent intent = new Intent(ConnectionActivity.this, MainActivity.class);
             intent.putExtra(ConnectionActivity.EXTRA_DEVICE_NAME, info);
             intent.putExtra(ConnectionActivity.EXTRA_DEVICE_ADDRESS, address);
 
@@ -132,12 +131,15 @@ public class ConnectionActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
+            // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                // If it's already paired, skip it, because it's been listed already
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
                     mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-                    mDeviceList.add(device);
                 }
+                // When discovery is finished, change the Activity title
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 setProgressBarIndeterminateVisibility(false);
                 setTitle(R.string.select_device);

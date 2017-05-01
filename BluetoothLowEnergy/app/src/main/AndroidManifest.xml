@@ -23,6 +23,10 @@
             android:name="io.fabric.ApiKey"
             android:value="63880c9b3303a52481b5acd056f1e7e3dddb07ed" />
 
+        <service
+            android:name=".bluetooth.service.BluetoothLeService"
+            android:enabled="true" />
+
         <activity android:name=".activity.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,14 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SplashActivity" />
         <activity android:name=".activity.DeviceConnectionActivity" />
-
-        <service
-            android:name=".bluetooth.service.BluetoothLeService"
-            android:enabled="true" />
-
         <activity android:name=".activity.DeviceControlActivity" />
         <activity
             android:name=".activity.DeviceScanActivity"
@@ -54,9 +52,17 @@
             android:label="@string/title_activity_capture_image"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.Main2Activity"
+            android:name=".activity.MainActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".activity.TestActivity" />
+        <activity
+            android:name=".activity.LoadingViewActivity"
+            android:label="@string/title_activity_loading_view"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

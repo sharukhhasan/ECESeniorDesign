@@ -20,21 +20,25 @@ void setup() {
 }
 
 void loop() {
+  boolean power_flag = false;
+
+  if(power_flag) {
+    digitalWrite(pwr_switch_pin, HIGH);
+  }
+  
 	if(arduinoSerial.available()) {
 		droidData = arduinoSerial.read();
 		if(droidData == SHUTOFF_COMMAND) {
+      power_flag = true;
 			arduinoSerial.println("Shut off command received. Shutting off device...");
 			digitalWrite(pwr_switch_pin, HIGH);
 		} else if (droidData == IMAGE_COMMAND) {
 			arduinoSerial.println("Image command received. Capturing image...");
 			digitalWrite(image_pin, HIGH);
 		} else {
-			arduinoSerial.print("Command: ");
-			arduinoSerial.print(droidData, DEC);
-			arduinoSerial.println(" --- INVALID COMMAND");
-
-			digitalWrite(pwr_switch_pin, LOW);
-			digitalWrite(image_pin, LOW);
+      power_flag = false;
+			//digitalWrite(pwr_switch_pin, LOW);
+			//digitalWrite(image_pin, LOW);
 		}
 	}
 	delay(100);
