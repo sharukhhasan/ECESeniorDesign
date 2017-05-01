@@ -1,10 +1,13 @@
 import bluetooth
-import time
 import subprocess
+import RPi.GPIO as GPIO
+from picamera import PiCamera
+from time import sleep
 
 IMAGE_PIN = 17;
 SHUTDOWN_PIN = 27;
 
+camera = PiCamera()
 
 GPIO.setmode(GPIO.BCM)
 
@@ -14,8 +17,7 @@ def image_callback():
     if GPIO.input(IMAGE_PIN):
         takeImage()
         sendPhotoToAndroid()
-GPIO.add_event_callback(IMAGE_PIN, image_callback())
-
+GPIO.add_event_callback(IMAGE_PIN, image_callback)
 
 
 def sendPhotoToAndroid():
@@ -35,7 +37,7 @@ def takeImage():
 	camera.resolution = (600, 400)
 	camera.start_preview()
 	sleep(3)
-    camera.stop_preview()
+	camera.stop_preview()
 	camera.capture('/home/pi/Desktop/image.jpg')
 
 
