@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bluetooth_blue">#0082FC</color>
+    <color name="light_gray">#66e0e0e0</color>
+
+    <color name="colorPrimary">@color/bluetooth_blue</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorSeparator">@color/colorAccent</color>
+
+    <color name="status_red">#C71717</color>
+    <color name="status_yellow">#E0BE33</color>
+    <color name="status_green">#5DBA5D</color>
+
+    <color name="color_darkergray">#58595B</color>
+    <color name="color_gray">#A9A9A9</color>
+    <color name="color_brown">#B8714E</color>
+    <color name="color_red">#ff2121</color>
+    <color name="color_orange">#FEB56B</color>
+    <color name="color_yellow">#E2D15C</color>
+    <color name="color_green">#7cbd7c</color>
+    <color name="color_blue">#2698DD</color>
+    <color name="color_purple">#9E69E2</color>
+    <color name="color_white">#ffffff</color>
+
+    <color name="app_darker_blue">#053d7f</color>
+    <color name="app_dark_blue">#0862cc</color>
+    <color name="app_blue">#0A7AFF</color>
+    <color name="app_light_blue">#57A4FF</color>
+    <color name="app_grey">#4A627F</color>
+</resources>

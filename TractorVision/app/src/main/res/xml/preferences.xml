@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:title="@string/pref_uuid_title"
+        android:summary="@string/pref_uuid_summary"
+        android:key="prefUuid"
+        android:defaultValue="@string/obex_push_uuid"/>
+
+    <EditTextPreference
+        android:key="prefTextBuffer"
+        android:title="@string/pref_text_buffer_title"
+        android:summary="@string/pref_text_buffer_summary"
+        android:defaultValue = "50000"
+        android:inputType = "number"
+        />
+
+</PreferenceScreen>
