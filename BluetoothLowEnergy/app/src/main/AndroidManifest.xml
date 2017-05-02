@@ -19,13 +19,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="63880c9b3303a52481b5acd056f1e7e3dddb07ed" />
-
-        <service
-            android:name=".bluetooth.service.BluetoothLeService"
-            android:enabled="true" />
 
         <activity android:name=".activity.OnboardingActivity">
             <intent-filter>
@@ -63,6 +56,7 @@
             android:name=".activity.LoadingViewActivity"
             android:label="@string/title_activity_loading_view"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.Homescreen"></activity>
     </application>
 
 </manifest>

@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen android:persistent="true" xmlns:android="http://schemas.android.com/apk/res/android" >
-    <PreferenceCategory android:title="Gets notified when">
-        <CheckBoxPreference android:key="key_paired"
-            android:title="Paired"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_pairing"
-            android:title="Pairing"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_unpaired"
-            android:title="Unpaired"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_connected"
-            android:title="Connected"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_disconnected"
-            android:title="Disconnected"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_disconnect_requested"
-            android:title="Disconnect requested"
-            android:defaultValue="true"/>
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Notification style">
-        <CheckBoxPreference android:key="key_lights"
-            android:title="Lights"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_sound"
-            android:title="Sound"
-            android:defaultValue="true"/>
-        <CheckBoxPreference android:key="key_vibrate"
-            android:title="Vibrate"
-            android:defaultValue="true"/>
-    </PreferenceCategory>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:title="@string/pref_uuid_title"
+        android:summary="@string/pref_uuid_summary"
+        android:key="prefUuid"
+        android:defaultValue="00001101-0000-1000-8000-00805F9B34FB"/>
+
+    <ListPreference
+        android:key="prefOrientation"
+        android:entries="@array/orientation"
+        android:entryValues="@array/orientationValues"
+        android:summary="@string/pref_orientation_summary"
+        android:title="@string/pref_orientation_title" />
+
+    <EditTextPreference
+        android:key="prefTextBuffer"
+        android:title="@string/pref_text_buffer_title"
+        android:summary="@string/pref_text_buffer_summary"
+        android:defaultValue = "50000"
+        android:inputType = "number"
+        />
+
 </PreferenceScreen>

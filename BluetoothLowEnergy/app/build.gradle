@@ -12,8 +12,8 @@ final String semanticVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
 apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 22
+    buildToolsVersion '25.0.2'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -34,19 +34,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors {
-    }
 }
 
 repositories {
-    jcenter()
     maven {
         url "https://dl.bintray.com/alt236/maven"
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -54,26 +51,13 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:gridlayout-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-
     // ButterKnife dependency injection lib
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-
-    // Memory leak detection
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
-    // GSON lib
-    compile 'com.google.code.gson:gson:2.8.0'
-
     // Material design lib
+    compile 'com.codevscolor.materialpreference:mp:0.2.1'
     compile 'com.github.rey5137:material:1.2.4'
-
-    compile 'com.anthonycr.grant:permissions:1.0'
-    compile 'uk.co.alt236:easycursor-android:1.0.0'
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
-
-    compile group:'com.twofortyfouram', name:'android-plugin-api-for-locale', version:'[1.0.2,2.0['
 }
