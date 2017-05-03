@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/discovery_toolbar"
-        layout="@layout/toolbar_discovery">
-    </include>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scanBtn"
+        android:text="@string/scan"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/discovery_toolbar"
+        android:layout_below="@+id/scanBtn"
         android:orientation="vertical">
 
         <RelativeLayout

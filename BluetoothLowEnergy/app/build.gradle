@@ -72,4 +72,7 @@ dependencies {
     compile 'com.anthonycr.grant:permissions:1.0'
     compile 'uk.co.alt236:easycursor-android:1.0.0'
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
+    compile 'com.github.MAXDeliveryNG:slideview:1.0.0'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

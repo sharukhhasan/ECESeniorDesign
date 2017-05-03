@@ -17,6 +17,9 @@ import java.io.OutputStream;
 public class ConnectedBluetooth extends Thread {
     private InputStream inputStream;
     private OutputStream outputStream;
+
+    private int val;
+
     Activity activity;
 
     public ConnectedBluetooth(InputStream inputStream, OutputStream outputStream, Activity activity) {
@@ -40,7 +43,7 @@ public class ConnectedBluetooth extends Thread {
         while (true) {
             try {
                 // Read from the InputStream.
-                inputStream.read(mmBuffer);
+                val = inputStream.read(mmBuffer);
 
                 final String mess = new String(mmBuffer);
                 activity.runOnUiThread(new Runnable() {
@@ -60,6 +63,10 @@ public class ConnectedBluetooth extends Thread {
                 break;
             }
         }
+    }
+
+    public int returnBatteryLevel() {
+        return val;
     }
 
     public void disconnect(){

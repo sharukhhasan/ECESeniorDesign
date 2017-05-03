@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -133,11 +132,11 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         mConnectionStatusTextView = (TextView) rootView.findViewById(R.id.connectedTextView);
-        mDeviceAddressTextView = (TextView) rootView.findViewById(R.id.deviceTextView);
+        mDeviceAddressTextView = (TextView) rootView.findViewById(R.id.deviceAddressTextView);
         mCaptureImageButton = (Button) rootView.findViewById(R.id.captureImageButton);
         mDeviceDetailsButton = (Button) rootView.findViewById(R.id.deviceDetailsButton);
-        mRemoteShutdownButton = (Button) rootView.findViewById(R.id.remoteShutdownButton);
-        mDisconnectButton = (Button) rootView.findViewById(R.id.disconnectButton);
+        mRemoteShutdownButton = (Button) rootView.findViewById(R.id.disconnectBluetoothButton);
+        mDisconnectButton = (Button) rootView.findViewById(R.id.disconnectBluetoothButton);
 
         mCaptureImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

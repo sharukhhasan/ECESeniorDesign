@@ -1,6 +1,7 @@
 package com.hrl.bluetoothlowenergy.utils;
 
 import java.text.DecimalFormat;
+import java.util.UUID;
 
 /**
  * Created by Sharukh Hasan on 3/24/17.
@@ -10,6 +11,10 @@ public class Constants {
 
     public static final DecimalFormat DOUBLE_TWO_DIGIT_ACCURACY = new DecimalFormat("#.##");
     public static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    public static final String RPI_ADDRESS = "B8:27:EB:C7:C4:11";
+    public static final UUID RPI_UUID = UUID.fromString("B8:27:EB:C7:C4:11");
+    public static final String RPI_NAME = "raspberrypi";
 
     public static final int MESSAGE_CON_STATE_CHANGE= 1;
     public static final int MESSAGE_WRITE = 2;
@@ -39,20 +44,4 @@ public class Constants {
     public static final String STR_CONNECTED = "Connected";
     public static final String STR_DISCONNECTED = "Disconnected";
     public static final String STR_DISCONNECTED_BY_USR = "Disconnected by user";
-
-
-
-    //directional bytes
-    public static final String BT_FWD = "W";
-    public static final String BT_REV = "S";
-    public static final String BT_LFT = "A";
-    public static final String BT_RGT = "D";
-
-    //delay for repead action button runnable
-    public static final long RUN_DELAY = 45;
-
-    //shared preferences constants
-    public static final String MAC_KEY = "MAC";
-    public static final String NAME_KEY = "NAME";
-    public static final String LAST_CONNECTED_KEY = "MAC";
 }

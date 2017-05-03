@@ -42,7 +42,7 @@ public class DeviceConnectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_discovery);
 
         lvPairedDevices = (ListView) findViewById(R.id.devices_paired_lv);
-        mScanButton = (Button) findViewById(R.id.button_scan);
+        mScanButton = (Button) findViewById(R.id.scanBtn);
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         bluetoothDevices = new ArrayList<>();
         deviceNames = new ArrayList<>();

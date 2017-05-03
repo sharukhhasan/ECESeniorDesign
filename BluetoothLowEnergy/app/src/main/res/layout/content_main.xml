@@ -36,22 +36,31 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/connectedTextView"
             android:textStyle="bold"
-            android:layout_below="@+id/deviceTextView"
+            android:layout_below="@+id/deviceAddressTextView"
             android:gravity="start"
             android:layout_marginStart="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/deviceNameTv"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/deviceTextView"
+            android:id="@+id/deviceAddressTextView"
+            android:textSize="30sp"
+            android:textColor="@color/color_gray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deviceNameTv"
             android:textSize="30sp"
             android:textColor="@color/color_gray"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="10dp" />
 
     </RelativeLayout>
 
@@ -62,7 +71,7 @@
         android:layout_height="wrap_content"
         android:divider="@drawable/divider"
         android:showDividers="beginning|middle|end"
-        android:layout_above="@+id/disconnectButton"
+        android:layout_above="@+id/remoteShutdownButton"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="25dp"
         android:layout_marginTop="10dp">
@@ -92,35 +101,35 @@
             android:elevation="2dp" />
 
         <Button
+            android:id="@+id/disconnectBluetoothButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Remote Shutdown\nPower off the peripheral device"
-            android:id="@+id/remoteShutdownButton"
-            android:drawableStart="@drawable/remote_shutoff"
-            android:gravity="start|center_vertical"
             android:background="#FFFFFF"
+            android:drawableStart="@drawable/ic_action_name"
+            android:elevation="2dp"
+            android:gravity="start|center_vertical"
+            android:text="Disconnect\nScan for other devices"
             android:textAllCaps="false"
-            android:textColor="@color/color_darkergray"
-            android:elevation="2dp" />
+            android:textColor="@color/color_darkergray" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/remoteShutdownButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/disconnect_from_device"
-        android:id="@+id/disconnectButton"
-        android:drawableStart="@drawable/bluetooth_searching"
-        android:background="@drawable/rounded_button_blue"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-medium"
-        android:textAllCaps="false"
-        android:gravity="center"
-        android:width="350dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:elevation="2dp" />
+        android:width="350dp"
+        android:background="@drawable/rounded_button_blue"
+        android:drawableStart="@drawable/ic_plug"
+        android:elevation="2dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Remote Shutdown"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
 
 </RelativeLayout>
