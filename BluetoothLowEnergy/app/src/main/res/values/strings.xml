@@ -111,4 +111,35 @@
     <string name="view_device_details">View Device Details</string>
     <string name="remote_shutdown">Remote Shutdown</string>
     <string name="disconnect_from_device">Disconnect From Device</string>
+
+    <!-- bluetooth admin messages -->
+    <string name="bt_admin_not_available">Bluetooth is not available.</string>
+    <string name="bt_admin_on">Bluetooth On</string>
+    <string name="bt_admin_off">Bluetooth Off</string>
+    <string name="bt_admin_already_on">Bluetooth is already On</string>
+    <string name="bt_admin_already_off">Bluetooth is already Off</string>
+    <string name="bt_error_off">Bluetooth  Off. Please enable your bluetooth.</string>
+    <string name="bt_error_already_connected_same_dev">Already connect to selected device.</string>
+    <string name="bt_error_already_connected">Already connect to a Different device.  Please disconnect first.</string>
+
+    <!-- titles -->
+    <string name="title_paired_devices">Paired devices:</string>
+    <string name="title_available_devices">Available devices:</string>
+
+    <!-- status indicator strings -->
+    <string name="status_title">Connection:</string>
+    <string name="status_default">Not Connected</string>
+
+
+    <!-- button names -->
+    <string name="button_bt_on">Turn ON BT</string>
+    <string name="button_bt_off">Turn OFF BT</string>
+    <string name="button_bt_discover">BT Discovery</string>
+    <string name="button_bt_disconnect">Disconnect</string>
+    <string name="button_bt_scan">Scan for Devices</string>
+    <string name="button_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

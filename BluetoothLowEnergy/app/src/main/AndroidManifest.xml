@@ -2,16 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hrl.bluetoothlowenergy">
 
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
-    <uses-feature android:name="android.hardware.location.gps" />
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,20 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.SplashActivity" />
-        <activity android:name=".activity.DeviceConnectionActivity" />
-
-        <service
-            android:name=".bluetooth.service.BluetoothLeService"
-            android:enabled="true" />
-
-        <activity android:name=".activity.DeviceControlActivity" />
-        <activity
-            android:name=".activity.DeviceScanActivity"
-            android:label="@string/title_activity_device_scan" />
-        <activity
-            android:name=".activity.DeviceDetailsActivity"
-            android:label="@string/title_activity_device_details" />
+        <activity android:name=".activity.DiscoveryActivity" />
+        <activity android:name=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>

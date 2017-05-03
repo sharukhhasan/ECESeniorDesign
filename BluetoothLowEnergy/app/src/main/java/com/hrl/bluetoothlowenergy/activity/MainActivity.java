@@ -47,23 +47,23 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothLeService mBluetoothLeService;
     private BluetoothLeDevice mDevice;
+    private boolean mBound = false;
 
-    // Code to manage Service lifecycle.
-    private final ServiceConnection mServiceConnection = new ServiceConnection() {
+    private String mDeviceName;
+    private String mDeviceAddress;
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+
         @Override
-        public void onServiceConnected(final ComponentName componentName, final IBinder service) {
-            mBluetoothLeService = ((BluetoothLeService.LocalBinder) service).getService();
-            if (!mBluetoothLeService.initialize()) {
-                Log.e(TAG, "Unable to initialize Bluetooth");
-                finish();
-            }
-            // Automatically connects to the device upon successful start-up initialization.
-            mBluetoothLeService.connect(mDevice.getAddress());
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            BluetoothLeService.LocalBinder binder = (BluetoothLeService.LocalBinder) service;
+            mBluetoothLeService = binder.getService();
+            mBound = true;
         }
 
         @Override
-        public void onServiceDisconnected(final ComponentName componentName) {
-            mBluetoothLeService = null;
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
         }
     };
 
@@ -93,20 +93,43 @@ public class MainActivity extends AppCompatActivity {
         OrientationUtils.lockOrientationPortrait(this);
 
         final Intent intent = getIntent();
-        mDevice = intent.getParcelableExtra(EXTRA_DEVICE);
+        //mDeviceName = intent.getStringExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME);
+        //mDeviceAddress = intent.getStringExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS);
+
+        Log.d("LOOK HERE", mDeviceName);
+        Log.d("LOOK HERE", mDeviceAddress);
+
 
         ButterKnife.bind(this);
 
         getSupportActionBar().setTitle("Main Menu");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDeviceTextView.setText("Sharukh's Macbook Pro");
+        mDeviceTextView.setText(mDeviceName);
         mDeviceTextView.setTextColor(getResources().getColor(R.color.color_darkergray));
         mConnectionTextView.setText("Connected");
         mConnectionTextView.setTextColor(getResources().getColor(R.color.color_green));
 
-        final Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
-        bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+        startService(new Intent(this, BluetoothLeService.class));
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent bluetoothConnectionIntent = new Intent(this, BluetoothLeService.class);
+        bindService(bluetoothConnectionIntent, mConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(mBound) {
+            unbindService(mConnection);
+            mBound = false;
+        }
     }
 
     @Override
@@ -138,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         if (mBluetoothLeService != null) {
-            final boolean result = mBluetoothLeService.connect(mDevice.getAddress());
+            final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
         }
     }
@@ -146,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(mServiceConnection);
+        //unbindService(mServiceConnection);
         mBluetoothLeService = null;
     }
 
