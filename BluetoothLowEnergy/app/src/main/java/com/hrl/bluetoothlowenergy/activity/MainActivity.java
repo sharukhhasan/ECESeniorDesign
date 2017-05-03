@@ -18,10 +18,7 @@ import android.widget.TextView;
 import com.hrl.bluetoothlowenergy.R;
 import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 import com.hrl.bluetoothlowenergy.bluetooth.service.BluetoothLeService;
-import com.hrl.bluetoothlowenergy.utils.DialogFactory;
 import com.hrl.bluetoothlowenergy.utils.OrientationUtils;
-import com.hrl.bluetoothlowenergy.utils.Sharer;
-import com.squareup.haha.perflib.Main;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

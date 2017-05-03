@@ -91,7 +91,7 @@ public class DiscoveryActivity extends AppCompatActivity {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
         mToolbar = (Toolbar) findViewById(R.id.discovery_toolbar);
-        setSupportActionBar(mToolbar);
+        //setSupportActionBar(mToolbar);
 
 
 
@@ -120,7 +120,7 @@ public class DiscoveryActivity extends AppCompatActivity {
 
                 BluetoothDevice btDev =  (BluetoothDevice) mPairedAdapter.getItem(position);
                 String deviceMac = btDev.getAddress();
-                Intent resultIntent = new Intent(DiscoveryActivity.this, MainActivity.class);
+                Intent resultIntent = new Intent(DiscoveryActivity.this, HomeActivity.class);
                 resultIntent.putExtra(DEVICE_STRING, deviceMac);
                 resultIntent.putExtra(BluetoothDevice.EXTRA_DEVICE, btDev);
                 startActivity(resultIntent);
@@ -138,7 +138,7 @@ public class DiscoveryActivity extends AppCompatActivity {
 
                 BluetoothDevice btDev =  (BluetoothDevice) mAvailableAdapter.getItem(position);
                 String deviceMac = btDev.getAddress();
-                Intent resultIntent = new Intent(DiscoveryActivity.this, MainActivity.class);
+                Intent resultIntent = new Intent(DiscoveryActivity.this, HomeActivity.class);
                 resultIntent.putExtra(DEVICE_STRING, deviceMac);
                 resultIntent.putExtra(BluetoothDevice.EXTRA_DEVICE, btDev);
                 startActivity(resultIntent);
@@ -170,7 +170,7 @@ public class DiscoveryActivity extends AppCompatActivity {
                     }, MY_PERMISSION_REQUEST
             );
         }
-        registerReceiver(mBtReceiver, mIntentFilter);
+        //registerReceiver(mBtReceiver, mIntentFilter);
     }
 
     @Override
