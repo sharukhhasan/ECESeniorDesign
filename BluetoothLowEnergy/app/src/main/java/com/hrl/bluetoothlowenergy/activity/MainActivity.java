@@ -1,5 +1,8 @@
 package com.hrl.bluetoothlowenergy.activity;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,16 +15,30 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hrl.bluetoothlowenergy.R;
+import com.hrl.bluetoothlowenergy.bluetooth.ConnectedBluetooth;
 import com.hrl.bluetoothlowenergy.bluetooth.device.BluetoothLeDevice;
 import com.hrl.bluetoothlowenergy.bluetooth.service.BluetoothLeService;
 import com.hrl.bluetoothlowenergy.utils.OrientationUtils;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.bt;
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.mCaptureImageButton;
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.mConnectionStatusTextView;
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.mDeviceAddressTextView;
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.mDeviceDetailsButton;
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.mDisconnectButton;
+import static com.hrl.bluetoothlowenergy.activity.MainActivity.mRemoteShutdownButton;
 
 /**
  * Created by Sharukh Hasan on 2/8/16.
@@ -35,13 +52,25 @@ public class MainActivity extends AppCompatActivity {
     private static final String DEVICE_DISCONNECTED = "Disconnected";
     private static final String DEVICE_CONNECTED = "Connected";
 
-    @BindView(R.id.deviceTextView) TextView mDeviceTextView;
-    @BindView(R.id.connectedTextView) TextView mConnectionTextView;
-    @BindView(R.id.captureImageButton) Button mCaptureImageBtn;
-    @BindView(R.id.deviceDetailsButton) Button mDeviceDetailsBtn;
-    @BindView(R.id.remoteShutdownButton) Button mRemoteShutdownBtn;
-    @BindView(R.id.disconnectButton) Button mDisconnectBtn;
+    public static ConnectedBluetooth bt;
 
+    public static TextView mConnectionStatusTextView;
+    public static TextView mDeviceAddressTextView;
+    public static Button mCaptureImageButton;
+    public static Button mDeviceDetailsButton;
+    public static Button mRemoteShutdownButton;
+    public static Button mDisconnectButton;
+
+    BluetoothAdapter bluetoothAdapter;
+    ListView lvPairedDevices;
+    ArrayAdapter<String> adapter;
+    ArrayList<BluetoothDevice> bluetoothDevices;
+    ArrayList<String> deviceNames;
+
+    private InputStream mInputStream;
+    private OutputStream mOutputStream;
+
+    private BluetoothAdapter mBluetoothAdapter;
     private BluetoothLeService mBluetoothLeService;
     private BluetoothLeDevice mDevice;
     private boolean mBound = false;
@@ -49,150 +78,74 @@ public class MainActivity extends AppCompatActivity {
     private String mDeviceName;
     private String mDeviceAddress;
 
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            BluetoothLeService.LocalBinder binder = (BluetoothLeService.LocalBinder) service;
-            mBluetoothLeService = binder.getService();
-            mBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
-
-    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-            if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
-                // updateConnectionTextView(DEVICE_CONNECTED, R.color.color_green);
-                Log.d(TAG, "Connected");
-            } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
-                // updateConnectionTextView(DEVICE_DISCONNECTED, R.color.color_red);
-                Log.d(TAG, "Disconnected");
-            } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
-                // Show all the supported services and characteristics on the user interface.
-                Log.d(TAG, "ACTION_GATT_SERVICES_DISCOVERED");
-            } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-                Log.d(TAG, "ACTION_DATA_AVAILABLE");
-            }
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         OrientationUtils.lockOrientationPortrait(this);
 
-        final Intent intent = getIntent();
-        //mDeviceName = intent.getStringExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME);
-        //mDeviceAddress = intent.getStringExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS);
+        mConnectionStatusTextView = (TextView) findViewById(R.id.connectedTextView);
+        mDeviceAddressTextView = (TextView) findViewById(R.id.deviceTextView);
+        mCaptureImageButton = (Button) findViewById(R.id.captureImageButton);
+        mDeviceDetailsButton = (Button) findViewById(R.id.deviceDetailsButton);
+        mRemoteShutdownButton = (Button) findViewById(R.id.remoteShutdownButton);
+        mDisconnectButton = (Button) findViewById(R.id.disconnectButton);
 
-        Log.d("LOOK HERE", mDeviceName);
-        Log.d("LOOK HERE", mDeviceAddress);
-
-
-        ButterKnife.bind(this);
-
-        getSupportActionBar().setTitle("Main Menu");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDeviceTextView.setText(mDeviceName);
-        mDeviceTextView.setTextColor(getResources().getColor(R.color.color_darkergray));
-        mConnectionTextView.setText("Connected");
-        mConnectionTextView.setTextColor(getResources().getColor(R.color.color_green));
-
-        startService(new Intent(this, BluetoothLeService.class));
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        Intent bluetoothConnectionIntent = new Intent(this, BluetoothLeService.class);
-        bindService(bluetoothConnectionIntent, mConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if(mBound) {
-            unbindService(mConnection);
-            mBound = false;
+        try {
+            mInputStream = DeviceConnectionActivity.mmSocket.getInputStream();
+            mOutputStream = DeviceConnectionActivity.mmSocket.getOutputStream();
+        } catch (IOException e) {
+            Log.d("BluetoothService", "ERR: getting IO streams");
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.empty, menu);
-        menu.findItem(R.id.about_menu).setVisible(true);
+        bt = new ConnectedBluetooth(mInputStream, mOutputStream, MainActivity.this);
+        bt.write("A".toString());
 
-        return true;
-    }
+        mDeviceAddressTextView.setText(mDeviceName);
+        mDeviceAddressTextView.setTextColor(getResources().getColor(R.color.color_darkergray));
+        mConnectionStatusTextView.setText("Connected");
+        mConnectionStatusTextView.setTextColor(getResources().getColor(R.color.color_green));
 
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_scan:
-                Log.d(TAG, "About btn clicked");
-                break;
-        }
-        return true;
-    }
+        uiThread uiThread = new uiThread();
+        uiThread.start();
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(mGattUpdateReceiver);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
-        if (mBluetoothLeService != null) {
-            final boolean result = mBluetoothLeService.connect(mDeviceAddress);
-            Log.d(TAG, "Connect request result=" + result);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //unbindService(mServiceConnection);
-        mBluetoothLeService = null;
-    }
-
-    public static Intent createIntent(final Context context, final BluetoothLeDevice device) {
-        final Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(MainActivity.EXTRA_DEVICE, device);
-        return intent;
-    }
-
-    private static IntentFilter makeGattUpdateIntentFilter() {
-        final IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
-        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTING);
-        return intentFilter;
+        bt.start();
     }
 
     void updateConnectionTextView(final String connectedText, final int textColor) {
         runOnUiThread(new Runnable() {
             public void run() {
-                mConnectionTextView.setText(connectedText);
-                mConnectionTextView.setTextColor(textColor);
-                mConnectionTextView.invalidate();
-                mConnectionTextView.postDelayed(this, 50);
+                mConnectionStatusTextView.setText(connectedText);
+                mConnectionStatusTextView.setTextColor(textColor);
+                mConnectionStatusTextView.invalidate();
+                mConnectionStatusTextView.postDelayed(this, 50);
+            }
+        });
+    }
+}
+
+class uiThread extends Thread {
+
+    @Override
+    public void run() {
+        mCaptureImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(DeviceConnectionActivity.mmSocket != null) {
+                    bt.write("I");
+                }
+            }
+        });
+        mDeviceDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bt.write("B");
+            }
+        });
+        mRemoteShutdownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bt.write("h");
             }
         });
     }
