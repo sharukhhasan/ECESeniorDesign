@@ -90,11 +90,6 @@ public class DiscoveryActivity extends AppCompatActivity {
         mScanHandler = new Handler();
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        mToolbar = (Toolbar) findViewById(R.id.discovery_toolbar);
-        //setSupportActionBar(mToolbar);
-
-
-
         mScanButton = (Button) findViewById(R.id.button_scan);
         mPairedDevicesView = (ListView) findViewById(R.id.devices_paired_lv);
         mAvailableDevicesView = (ListView) findViewById(R.id.devices_available_lv);
@@ -170,7 +165,7 @@ public class DiscoveryActivity extends AppCompatActivity {
                     }, MY_PERMISSION_REQUEST
             );
         }
-        //registerReceiver(mBtReceiver, mIntentFilter);
+        registerReceiver(mBtReceiver, mIntentFilter);
     }
 
     @Override
