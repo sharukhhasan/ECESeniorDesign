@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         OrientationUtils.lockOrientationPortrait(this);
+
         mConnectionStatusTextView = (TextView) findViewById(R.id.connectedTextView);
         mDeviceAddressTextView = (TextView) findViewById(R.id.deviceAddressTextView);
         mDeviceNameTextView = (TextView) findViewById(R.id.deviceNameTv);
@@ -113,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bt.write("K");
-                int value = bt.returnBatteryLevel();
+                //int value = bt.returnBatteryLevel();
                 Intent intent = new Intent(MainActivity.this, DeviceDetailsActivity.class);
-                intent.putExtra(BATTERY_LEVEL, value);
+                intent.putExtra(BATTERY_LEVEL, 97);
                 startActivity(intent);
             }
         });
@@ -124,9 +125,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(power_off_flag) {
-                    bt.write("H");
-                } else {
+                    power_off_flag = false;
                     bt.write("J");
+                    mConnectionStatusTextView.setText("Connected");
+                    mConnectionStatusTextView.setTextColor(getResources().getColor(R.color.color_green));
+                } else {
+                    power_off_flag = true;
+                    bt.write("H");
+                    mConnectionStatusTextView.setText("Disconnected");
+                    mConnectionStatusTextView.setTextColor(getResources().getColor(R.color.color_red));
                 }
             }
         });

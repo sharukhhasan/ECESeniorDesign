@@ -29,7 +29,8 @@ public class DeviceDetailsActivity extends AppCompatActivity {
         }
 
         mBatteryLevel = (TextView) findViewById(R.id.deviceBatteryTitle);
-        mBatteryLevel.setText(String.valueOf(mBatteryValue));
+        String lvl = String.valueOf(mBatteryValue) + "%";
+        mBatteryLevel.setText(lvl);
 
         mDeviceName = (TextView) findViewById(R.id.deviceNameTitle);
         mDeviceName.setText(Constants.RPI_NAME);
@@ -37,6 +38,9 @@ public class DeviceDetailsActivity extends AppCompatActivity {
         mDeviceAddress = (TextView) findViewById(R.id.deviceAddressTitle);
         mDeviceAddress.setText(Constants.RPI_ADDRESS);
 
+        String rssi = Integer.toString(-67) + "db";
         mDeviceRssi = (TextView) findViewById(R.id.deviceRssiTitle);
+        mDeviceRssi.setText(rssi);
+
     }
 }

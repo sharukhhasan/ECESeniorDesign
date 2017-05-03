@@ -18,7 +18,7 @@ public class ConnectedBluetooth extends Thread {
     private InputStream inputStream;
     private OutputStream outputStream;
 
-    private int val;
+    private static int val;
 
     Activity activity;
 
@@ -45,6 +45,9 @@ public class ConnectedBluetooth extends Thread {
                 // Read from the InputStream.
                 val = inputStream.read(mmBuffer);
 
+                Log.d("VDRFBVDFV", Integer.toString(val));
+                Log.d("DRVRDV", mmBuffer.toString());
+
                 final String mess = new String(mmBuffer);
                 activity.runOnUiThread(new Runnable() {
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -65,7 +68,7 @@ public class ConnectedBluetooth extends Thread {
         }
     }
 
-    public int returnBatteryLevel() {
+    public static int returnBatteryLevel() {
         return val;
     }
 
