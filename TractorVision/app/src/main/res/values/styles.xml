@@ -57,4 +57,31 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- Discovery Activity Customization -->
+    <style name="DeviceListItem">
+        <item name="android:minHeight">@dimen/device_list_item_height</item>
+        <item name="android:layout_margin">@dimen/device_list_view_item_margin</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="DeviceListView">
+        <item name="android:layout_margin">@dimen/device_list_view_margin</item>
+
+    </style>
+
+    <style name="DevicesHeading">
+        <item name="android:elevation">4dp</item>
+        <item name="android:layout_margin">@dimen/device_list_header_margin</item>
+        <item name="android:minHeight">@dimen/device_list_title_height</item>
+        <item name="android:textSize">@dimen/device_list_header_text_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
+    <style name="DirectionalButton">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>

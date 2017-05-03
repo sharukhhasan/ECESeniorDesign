@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +25,9 @@
         <activity android:name=".activity.ConnectionActivity" />
         <activity android:name=".activity.PreferencesActivity" />
         <activity android:name=".activity.DeviceListActivity" />
-        <activity android:name=".activity.ChatActivity"></activity>
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.DiscoveryActivity" />
+        <activity android:name=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>

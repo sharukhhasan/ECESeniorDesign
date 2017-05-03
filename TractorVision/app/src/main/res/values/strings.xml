@@ -226,4 +226,19 @@
     <string name="unique_uuid">72fb83bd-12ad-455e-ba8a-6d4c49d2bbdd</string>
     <string name="tractor_vision">TractorVision</string>
     <string name="pair">Pair</string>
+    <string name="scan_for_devices">SCAN FOR DEVICES</string>
+    <string name="available_devices">Available devices:</string>
+
+    <!-- bluetooth admin messages -->
+    <string name="bt_admin_not_available">Bluetooth is not available.</string>
+    <string name="bt_admin_on">Bluetooth On</string>
+    <string name="bt_admin_off">Bluetooth Off</string>
+    <string name="bt_admin_already_on">Bluetooth is already On</string>
+    <string name="bt_admin_already_off">Bluetooth is already Off</string>
+    <string name="bt_error_off">Bluetooth  Off. Please enable your bluetooth.</string>
+    <string name="bt_error_already_connected_same_dev">Already connect to selected device.</string>
+    <string name="bt_error_already_connected">Already connect to a Different device.  Please disconnect first.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
